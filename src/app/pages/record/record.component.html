@@ -1,0 +1,61 @@
+<!-- src/app/pages/event/event.component.html -->
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <h1 class="text-center">{{pageTitle}}</h1>
+
+  <!-- Record -->
+
+  <ng-template [ngIf]="record">
+    <div class="card">
+
+      <!-- Record tab navigation -->
+
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="[]"
+              [queryParams]="{tab: 'request'}"
+              [ngClass]="{'active': utils.tabIs(tab, 'request')}">Records Management</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="[]"
+              [queryParams]="{tab: 'manufacturing'}"
+              [ngClass]="{'active': utils.tabIs(tab, 'manufacturing')}">Manufacturing</a>
+          </li>
+          <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="[]"
+                [queryParams]="{tab: 'quality'}"
+                [ngClass]="{'active': utils.tabIs(tab, 'quality')}">Quality</a>
+            </li>
+        </ul>
+      </div>
+
+      <!-- Request detail tab -->
+      <app-request-detail
+        *ngIf="utils.tabIs(tab, 'request')"
+        [record]="record"></app-request-detail>
+
+      <!-- Record detail tab for Mfg-->
+      <app-record-detail-mfg
+        *ngIf="utils.tabIs(tab, 'manufacturing')"
+        [record]="record"></app-record-detail-mfg>
+
+      <!-- Record detail tab for QA-->
+      <app-record-detail-qa
+        *ngIf="utils.tabIs(tab, 'quality')"
+        [record]="record"></app-record-detail-qa>
+    </div>
+  </ng-template>
+
+  <!-- Error loading events -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Oops!</strong> There was an error retrieving information for this record.
+  </p>
+</ng-template>

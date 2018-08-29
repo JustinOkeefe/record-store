@@ -1,0 +1,57 @@
+<header id="header" class="header">
+  <div class="header-page bg-primary">
+    <a class="toggle-offcanvas bg-primary" (click)="toggleNav()"><span></span></a>
+    <h1 class="header-page-siteTitle">
+      <a routerLink="/">Record Store</a>
+    </h1>
+  </div>
+    <div class="header-page-authStatus">
+      <a *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</a>
+      <span *ngIf="auth.loggedIn">
+        {{auth.userProfile?.name}} <span class="opacity-half">|</span> <a (click)="auth.logout()">Log Out</a>
+      </span>
+  </div>
+
+  <nav id="nav" class="nav" role="navigation">
+    <ul class="nav-list">
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">Records</a>
+      </li>
+      <li>
+          <a
+            *ngIf="auth.loggedIn && auth.isAdmin"
+            routerLink="/admin"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">Admin</a>
+      </li>
+      <li>
+          <a
+            *ngIf="auth.loggedIn && auth.isAdmin"
+            routerLink="/admin/record/new"
+            routerLinkActive="active">Request Record</a>
+      </li>
+      <li>
+          <a
+            *ngIf="auth.loggedIn && auth.isAdmin"
+            routerLink="/admin/requests"
+            routerLinkActive="active">Requests</a>
+      </li>
+      <li>
+          <a
+            *ngIf="auth.loggedIn && auth.isAdmin"
+            routerLink="/admin/manufacturing"
+            routerLinkActive="active">Manufacturing</a>
+      </li>
+      <li>
+          <a
+            *ngIf="auth.loggedIn && auth.isAdmin"
+            routerLink="/admin/quality"
+            routerLinkActive="active">Quality</a>
+      </li>
+
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,76 @@
+<div class="card-block">
+  <h2 class="card-title text-center">Quality Assurance Details</h2>
+</div>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item alert-danger" *ngIf="!record.status">
+    <strong>Status: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.status">
+    <strong>Status:</strong>{{record.status}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.location">
+    <strong>Location: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.location">
+    <strong>Location:</strong>{{record.location}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.qaOwner">
+    <strong>Quality Owner Name: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.qaOwner">
+    <strong>Quality Owner Name:</strong>{{record.qaOwner}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.firstPassCheck">
+    <strong>First Pass Complete: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.firstPassCheck">
+    <strong>First Pass Complete:</strong>Complete
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.gdpCheck">
+    <strong>GDP Check Complete: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.gdpCheck">
+    <strong>GDP Check Complete:</strong>Complete
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.sapCheck">
+    <strong>SAP Check Complete: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.sapCheck">
+    <strong>SAP Check Complete:</strong>Complete
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.alarmsCheck">
+    <strong>Trend and Alarm Check Complete: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.alarmsCheck">
+    <strong>Trend and Alarm Check Complete:</strong>Complete
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.syncadeCheck">
+    <strong>Syncade Order Closure Complete: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.syncadeCheck">
+    <strong>Syncade Order Closure Complete:</strong>Complete
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.qaFinalReviewDate">
+    <strong>Quality Final Review Date: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.qaFinalReviewDate">
+    <strong>Quality Final Review Date:</strong>{{record.qaFinalReviewDate | date: "dd-MMM-yyyy"}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.qaReviewedBy">
+    <strong>Quality Review By: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.qaReviewedBy">
+    <strong>Quality Review By:</strong>{{record.qaReviewedBy}}
+  </li>
+  <li class="list-group-item" *ngIf="!record.qaReviewedBy">
+    <strong>Quality Review By: None</strong>
+  </li>
+  <li class="list-group-item">
+    <strong>Comments by QA:</strong>{{record.qaComments}}
+  </li>
+
+
+  <div *ngIf="auth.isAdmin" class="card-footer text-right small">
+    <a [routerLink]="['/admin/record/quality/update', record._id]">Edit</a>
+  </div>

@@ -1,0 +1,101 @@
+<mat-vertical-stepper>
+    <mat-step [stepControl]="recordForm">
+        <form [formGroup]="recordForm">
+            <ng-template matStepLabel>What is the batch number</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="e.g. AAA1111" formControlName="batchId" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+      </mat-step>
+
+    <mat-step [stepControl]="recordForm">
+        <form [formGroup]="recordForm">
+            <ng-template matStepLabel>What is the process order number?</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="e.g. 123456789" formControlName="processOrder" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="recordForm">
+        <form [formGroup]="recordForm">
+            <ng-template matStepLabel>What molecule is this for?</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="e.g. " formControlName="molecule" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="recordForm">
+        <form [formGroup]="recordForm">
+            <ng-template matStepLabel>What is the name of the batch record?</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="Batch Record Name" formControlName="batchRecordName" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="recordForm">
+        <form [formGroup]="recordForm">
+            <ng-template matStepLabel>In which area will this record be executed?</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="Molecule" formControlName="recordAreaType" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="recordForm">
+        <form [formGroup]="recordForm">
+            <ng-template matStepLabel>What is the document number?</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="Document Number" formControlName="mbrDocNumber" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+        <mat-step [stepControl]="recordForm">
+        <form [formGroup]="recordForm">
+        <ng-template matStepLabel>Done</ng-template>
+        Almost there. Press Submit to complete the request
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button
+                type="submit"
+                (click)="onSubmit()"
+                
+                [innerText]="submitBtnText"></button>
+          </div>
+          <div>
+            <app-submitting *ngIf="submitting"></app-submitting>
+        
+            <!-- API submission error -->
+            <p *ngIf="error" class="mt-3 alert alert-danger">
+              <strong>Error:</strong> There was a problem submitting the request. Please ensure all fields are correct.
+            </p>
+          </div>
+        </form>
+      </mat-step>
+</mat-vertical-stepper>

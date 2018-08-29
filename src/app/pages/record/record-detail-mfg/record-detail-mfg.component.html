@@ -1,0 +1,44 @@
+<div class="card-block">
+  <h2 class="card-title text-center">Manufacturing Details</h2>
+</div>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item alert-danger" *ngIf="!record.status">
+    <strong>Status: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.status">
+    <strong>Status:</strong>{{record.status}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.location">
+    <strong>Location: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.location">
+    <strong>Location:</strong>{{record.location}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.operationEndDate">
+    <strong>Operation End Date: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.operationEndDate">
+    <strong>Operation End Date:</strong>{{record.operationEndDate | date: "dd-MMM-yyyy"}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.mfgFinalReviewDate">
+    <strong>Manufacturing Final Review Date: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.mfgFinalReviewDate">
+    <strong>Manufacturing Final Review Date:</strong>{{record.mfgFinalReviewDate | date: "dd-MMM-yyyy"}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.mfgFinalReviewBy">
+    <strong>Manufacturing Review By: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.mfgFinalReviewBy">
+    <strong>Manufacturing Review By:</strong>{{record.mfgFinalReviewBy}}
+  </li>
+  <li class="list-group-item">
+    <strong>Comments by Manufacturing:</strong>{{record.mfgComments}}
+  </li>
+
+
+
+  <div *ngIf="auth.isAdmin" class="card-footer text-right small">
+    <a [routerLink]="['/admin/record/manufacturing/update', record._id]">Edit</a>
+  </div>

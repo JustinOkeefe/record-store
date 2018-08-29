@@ -1,0 +1,38 @@
+.input-group-1-per-line {
+    display: flex;
+}
+  
+.input-group-2-per-line {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.input-group-3-per-line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-group-5-per-line {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.input-group-1-per-line > * {
+    width: 100%;
+}
+.input-group-2-per-line > * {
+    width: 49%;
+}
+.input-group-3-per-line > * {
+    width: 32%;
+}
+.input-group-5-per-line > * {
+    width: 14%;
+}
+  
+  
+  .form-group-submit-btn {
+    padding: 10px;
+  }
+  
+  

@@ -1,0 +1,74 @@
+<div class="card-block">
+  <h2 class="card-title text-center">Request Details</h2>
+</div>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item alert-danger" *ngIf="!record.issuanceNumber">
+    <strong>Issuance Number: PENDING ISSUANCE</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.issuanceNumber">
+    <strong>Issuance Number:</strong>{{record.issuanceNumber}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.issuanceDate">
+    <strong>Issuance Date: PENDING ISSUANCE</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.issuanceDate">
+    <strong>Issuance Date:</strong>{{record.issuanceDate | date: "dd-MMM-yyyy"}}
+  </li>
+  <li class="list-group-item" *ngIf="record.requestType">
+    <strong>Request Type:</strong>{{record.requestType}}
+  </li>
+  <li class="list-group-item">
+    <strong>Molecule:</strong>{{record.molecule}}
+  </li>
+  <li class="list-group-item">
+    <strong>Document Number:</strong>{{record.mbrDocNumber}}
+  </li>
+  <li class="list-group-item">
+    <strong>Batch ID:</strong>{{record.batchId}}
+  </li>
+  <li class="list-group-item">
+    <strong>Syncade Order:</strong>{{record.processOrder}}
+  </li>
+  <li class="list-group-item">
+    <strong>Batch Record Name:</strong>{{record.batchRecordName}}
+  </li>
+  <li class="list-group-item">
+    <strong>Process Area:</strong>{{record.recordAreaType}}
+  </li>
+  <li class="list-group-item">
+    <strong>Low Shed Paper Required:</strong>{{record.lowShedPaper}}
+  </li>
+  <li class="list-group-item">
+    <strong>Date Requested:</strong>{{record.requestedDate | date: "dd-MMM-yyyy"}}
+  </li>
+  <li class="list-group-item">
+    <strong>Need By Date:</strong>{{record.needByDate | date: "dd-MMM-yyyy"}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.issuanceDate">
+    <strong>Issuance Date: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.issuanceDate">
+    <strong>Issuance Date:</strong>{{record.issuanceDate | date: "dd-MMM-yyyy"}}
+  </li>
+  <li class="list-group-item">
+    <strong>Comments:</strong>{{record.requestComments}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.status">
+    <strong>Status: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.status">
+    <strong>Status:</strong>{{record.status}}
+  </li>
+  <li class="list-group-item alert-danger" *ngIf="!record.location">
+    <strong>Location: PENDING</strong>
+  </li>
+  <li class="list-group-item" *ngIf="record.location">
+    <strong>Location:</strong>{{record.location}}
+  </li>
+</ul>
+
+
+<div *ngIf="auth.isAdmin" class="card-footer text-right small">
+  <a [routerLink]="['/admin/record/request/update', record._id]">Edit</a>
+</div>

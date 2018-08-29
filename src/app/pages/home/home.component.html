@@ -1,0 +1,70 @@
+<h1 *ngIf="auth.loggedIn" class="text-center">{{pageTitle}}</h1>
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+    <ng-template [ngIf]="recordList">
+        <ng-template [ngIf]="recordList.length">
+
+            <!--Search records -->
+            <section class="search input-group mb-3">
+                    <label class="input-group-addon" for="search">Search</label>
+                    <input
+                      id="search"
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="query"
+                      (keyup)="searchRecords()" />
+                    <span class="input-group-btn">
+                      <button
+                        class="btn btn-danger"
+                        (click)="resetQuery()"
+                        [disabled]="!query">&times;</button>
+                    </span>
+                  </section>
+
+            <!--No seach results-->
+            <p *ngIf="fs.noSearchResults(filteredRecords, query)" class="alert alert-warning">
+                No records found for <em class="text-danger">{{query}}</em>, sorry!
+            </p>
+
+            <!--Records listing-->
+            <section class="list-group">
+                <a
+                    *ngFor="let record of fs.orderByDate(filteredRecords, 'requestedDate')"
+                    [routerLink]="['/record', record._id]"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" [innerHTML]="record.batchId"></h5>
+                        <small style="color: red" *ngIf="!record.issuanceDate">Pending Issuance</small>
+                        <small *ngIf="record.issuanceDate"><strong>Date Issued: </strong>{{record.issuanceDate | date: "dd-MMM-yyyy"}}</small>
+                    </div>
+                    <div class="d-flex w-100 justify-content-between">
+                        <small *ngIf="!record.issuanceNumber"><strong>Issuance Number:</strong> Pending</small>
+                        <small *ngIf="record.issuanceNumber"><strong>Issuance Number:</strong> {{record.issuanceNumber}}</small>
+                        <small><strong>Record Name:</strong> {{record.batchRecordName}}</small>
+                    </div>
+                </a>
+            </section>
+        </ng-template>
+
+        <!-- No records available -->
+        <p *ngIf="!recordList.length" class="alert alert-info">
+        No records available.
+        </p>
+    </ng-template>
+      
+    <!-- Error loading records -->
+    <p *ngIf="error && auth.loggedIn" class="alert alert-danger">
+        <strong>Oops!</strong> There was an error retrieving record data.
+    </p>
+
+    <a *ngIf="!auth.loggedIn" (click)="auth.login()">
+        <div class="alert alert-info text-center" role="alert">
+        <h1><strong>Welcome</strong></h1>
+        <p>Please log in to continue</p>
+</div>
+    </a>
+
+
+    
+</ng-template>

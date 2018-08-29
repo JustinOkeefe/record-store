@@ -1,0 +1,408 @@
+<form [formGroup]="recordForm" (ngSubmit)="onSubmit()">
+    <!-- Issuance Number -->
+    <div class="form-group">
+      <label for="issuanceNumber">issuance Number </label>
+      <input
+        id="issuanceNumber"
+        type="text"
+        class="form-control"
+        formControlName="issuanceNumber"
+        [maxlength]="ef.issuanceNumber">
+      <div
+        *ngIf="formErrors.issuanceNumber"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.issuanceNumber">
+      </div>
+    </div>
+
+    <!-- Batch -->
+    <div class="form-group">
+      <label for="batchId">Batch </label>
+      <input
+        id="batchId"
+        type="text"
+        class="form-control"
+        formControlName="batchId"
+        [maxlength]="ef.batchIdMax">
+      <div
+        *ngIf="formErrors.batchId"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.batchId">
+      </div>
+    </div>
+
+    <!-- Process Order -->
+    <div class="form-group">
+      <label for="processOrder">Process Order </label>
+      <input
+        id="processOrder"
+        type="text"
+        class="form-control"
+        formControlName="processOrder"
+        [maxlength]="ef.processOrderMax">
+      <div
+        *ngIf="formErrors.processOrder"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.processOrder">
+      </div>
+    </div>
+
+    <!-- Molecule -->
+    <div class="form-group">
+      <label for="molecule">Molecule </label>
+      <input
+        id="molecule"
+        type="text"
+        class="form-control"
+        formControlName="molecule"
+        [maxlength]="ef.moleculeMax">
+      <div
+        *ngIf="formErrors.molecule"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.molecule">
+      </div>
+    </div>
+
+    <!-- Batch Record Name -->
+    <div class="form-group">
+      <label for="batchRecordName">Batch Record Name </label>
+      <input
+        id="batchRecordName"
+        type="text"
+        class="form-control"
+        formControlName="batchRecordName"
+        [maxlength]="ef.batchRecordNameMax">
+      <div
+        *ngIf="formErrors.batchRecordName"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.batchRecordName">
+      </div>
+    </div>
+
+    <!-- Record Area-->
+    <div class="form-group">
+      <label for="recordAreaType">Record Area Type</label>
+      <input
+        id="recordAreaType"
+        type="text"
+        class="form-control"
+        formControlName="recordAreaType"
+        [maxlength]="ef.recordAreaTypeMax">
+      <div
+        *ngIf="formErrors.recordAreaType"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.recordAreaType">
+      </div>
+    </div>
+
+    <!-- Document Number-->
+    <div class="form-group">
+      <label for="mbrDocNumber">MBR Document Number</label>
+      <input
+        id="mbrDocNumber"
+        type="text"
+        class="form-control"
+        formControlName="mbrDocNumber"
+        [maxlength]="ef.mbrDocNumMax">
+      <div
+        *ngIf="formErrors.mbrDocNumber"
+        class="small text-danger formErrors"
+        [innerHTML]="formErrors.mbrDocNumber">
+      </div>
+    </div>
+
+    <!-- Lot -->
+    <div class="form-group">
+      <label for="lot">Lot</label>
+      <input
+        id="lot"
+        type="text"
+        class="form-control"
+        formControlName="lot">
+    </div>
+
+    <!-- Status -->
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input
+        id="status"
+        type="text"
+        class="form-control"
+        formControlName="status">
+    </div>
+
+    <!-- Location -->
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input
+        id="location"
+        type="text"
+        class="form-control"
+        formControlName="location">
+    </div>
+
+    <!-- Manufacturing Representative -->
+    <div class="form-group">
+      <label for="mfgOwner">Manufacturing Representative</label>
+      <input
+        id="mfgOwner"
+        type="text"
+        class="form-control"
+        formControlName="mfgOwner">
+    </div>
+
+    <!-- Manufacturing Final Review By -->
+    <div class="form-group">
+      <label for="mfgFinalReviewBy">Manufacturing Final Review By </label>
+      <input
+        id="mfgFinalReviewBy"
+        type="text"
+        class="form-control"
+        formControlName="mfgFinalReviewBy">
+    </div>
+
+    <!-- Quality Representative-->
+    <div class="form-group">
+      <label for="qaOwner">Quality Representative</label>
+      <input
+        id="qaOwner"
+        type="text"
+        class="form-control"
+        formControlName="qaOwner">
+    </div>
+    
+    <!-- Quality Final Review By-->
+    <div class="form-group">
+      <label for="qaReviewedBy">Quality Final Review By</label>
+      <input
+        id="qaReviewedBy"
+        type="text"
+        class="form-control"
+        formControlName="qaReviewedBy">
+    </div>
+
+    <!-- Mfg Comments-->
+    <div class="form-group">
+        <label for="mfgComments">Manufacturing Comments</label>
+        <input
+          id="mfgComments"
+          type="text"
+          class="form-control"
+          formControlName="mfgComments">
+    </div>
+
+    <!-- QA Comments-->
+    <div class="form-group">
+        <label for="qaComments">Quality Comments</label>
+        <input
+          id="qaComments"
+          type="text"
+          class="form-control"
+          formControlName="qaComments">
+    </div>
+  
+    <!-- Dates -->
+    <div
+    formGroupName="datesGroup"
+    [ngClass]="{'has-danger': recordForm.get('datesGroup').errors}">
+    <div class="row">
+      <!-- Issuance date -->
+      <div class="form-group col-sm-12 col-md-6">
+        <label for="issuanceDate">Issuance Date</label>
+        <input
+          id="issuanceDate"
+          type="text"
+          class="form-control"
+          formControlName="issuanceDate"
+          [placeholder]="ef.dateFormat"
+          [maxlength]="ef.dateMax">
+        <div
+          *ngIf="formErrors.datesGroup.issuanceDate"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.datesGroup.issuanceDate">
+        </div>
+      </div>
+      <!-- Op end date -->
+      <div class="form-group col-sm-12 col-md-6">
+          <label for="operationEndDate">Operation End Date</label>
+          <input
+            id="operationEndDate"
+            type="text"
+            class="form-control"
+            formControlName="operationEndDate"
+            [placeholder]="ef.dateFormat">
+        </div>
+      <!-- Mfg review date -->
+      <div class="form-group col-sm-12 col-md-6">
+          <label for="mfgFinalReviewDate">Manufacturing Final Review Date</label>
+          <input
+            id="mfgFinalReviewDate"
+            type="text"
+            class="form-control"
+            formControlName="mfgFinalReviewDate"
+            [placeholder]="ef.dateFormat">
+      </div>
+      <!-- QA final review date -->
+      <div class="form-group col-sm-12 col-md-6">
+          <label for="qaFinalReviewDate">QA Final Review Date</label>
+          <input
+            id="qaFinalReviewDate"
+            type="text"
+            class="form-control"
+            formControlName="qaFinalReviewDate"
+            [placeholder]="ef.dateFormat">
+      </div>
+
+    <p *ngIf="recordForm.get('datesGroup').errors" class="alert alert-danger small">
+      <strong>Dates/times out of range:</strong> Record cannot end before they begin. Please double-check the start and end dates and times.
+    </p>
+    </div>
+  </div>
+
+    <!-- QA First Pass Check -->
+  <div class="form-group">
+    <label class="label-inline-group">QA First Pass Check</label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="firstPassCheck-yes"
+          type="radio"
+          class="form-check-input"
+          [value]="true"
+          formControlName="firstPassCheck"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="firstPassCheck-no"
+          type="radio"
+          class="form-check-input"
+          [value]="false"
+          formControlName="firstPassCheck"> No
+      </label>
+    </div>
+  </div>
+
+      <!-- QA GDP Check -->
+      <div class="form-group">
+          <label class="label-inline-group">QA GDP Check</label>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="gdpCheck-yes"
+                type="radio"
+                class="form-check-input"
+                [value]="true"
+                formControlName="gdpCheck"> Yes
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="gdpCheck-no"
+                type="radio"
+                class="form-check-input"
+                [value]="false"
+                formControlName="gdpCheck"> No
+            </label>
+          </div>
+        </div>
+
+      <!-- QA SAP Check -->
+      <div class="form-group">
+          <label class="label-inline-group">QA SAP Check</label>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="sapCheck-yes"
+                type="radio"
+                class="form-check-input"
+                [value]="true"
+                formControlName="sapCheck"> Yes
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="sapCheck-no"
+                type="radio"
+                class="form-check-input"
+                [value]="false"
+                formControlName="sapCheck"> No
+            </label>
+          </div>
+        </div>
+
+      <!-- QA Alarms Check -->
+      <div class="form-group">
+          <label class="label-inline-group">QA Alarms Check</label>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="alarmsCheck-yes"
+                type="radio"
+                class="form-check-input"
+                [value]="true"
+                formControlName="alarmsCheck"> Yes
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="alarmsCheck-no"
+                type="radio"
+                class="form-check-input"
+                [value]="false"
+                formControlName="alarmsCheck"> No
+            </label>
+          </div>
+        </div>
+        
+      <!-- QA Syncade Check -->
+      <div class="form-group">
+          <label class="label-inline-group">QA Synacde Check</label>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="syncadeCheck-yes"
+                type="radio"
+                class="form-check-input"
+                [value]="true"
+                formControlName="syncadeCheck"> Yes
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                id="syncadeCheck-no"
+                type="radio"
+                class="form-check-input"
+                [value]="false"
+                formControlName="syncadeCheck"> No
+            </label>
+          </div>
+        </div>
+
+        
+    <!-- Submit -->
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        
+        [innerText]="submitBtnText"></button>
+        <!-- https://github.com/angular/angular/issues/11271#issuecomment-289806196 -->
+      <app-submitting *ngIf="submitting"></app-submitting>
+      <a
+        *ngIf="!submitting"
+        class="btn btn-link"
+        (click)="resetForm()"
+        tabindex="0">Reset Form</a>
+  
+      <!-- API submission error -->
+      <p *ngIf="error" class="mt-3 alert alert-danger">
+        <strong>Error:</strong> There was a problem submitting the record. Please try again.
+      </p>
+    </div>
+  </form>

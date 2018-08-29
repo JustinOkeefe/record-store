@@ -1,0 +1,59 @@
+<form [formGroup]="recordForm" (ngSubmit)="onSubmit()">
+  <mat-card class="card">
+
+    <div class="input-group-1-per-line">
+      <mat-form-field class="form-group">
+        <input matInput placeholder="Quality Final Reviewer (Full Name)" formControlName="qaOwner" required>
+      </mat-form-field>
+    </div>
+    <div class="input-group-1-per-line">
+      <mat-checkbox class="form-group" formControlName="firstPassCheck">First Pass Complete</mat-checkbox>
+    </div>
+    <div class="input-group-1-per-line">
+      <mat-checkbox class="form-group" formControlName="gdpCheck">GDP Check Complete</mat-checkbox>
+    </div>
+    <div class="input-group-1-per-line">
+      <mat-checkbox class="form-group" formControlName="sapCheck">SAP Check Complete</mat-checkbox>
+    </div>
+    <div class="input-group-1-per-line">
+      <mat-checkbox class="form-group" formControlName="alarmsCheck">Alarm Check Complete</mat-checkbox>
+    </div>
+    <div class="input-group-1-per-line">
+      <mat-checkbox class="form-group" formControlName="syncadeCheck">Syncade Check Complete</mat-checkbox>
+    </div>
+
+    <div class="input-group-2-per-line"></div>
+    <mat-form-field class="dates">
+      <input matInput readonly [matDatepicker]="qaOpEndDatePicker" placeholder="Final QA Closure Date" formControlName='qaFinalReviewDate'
+        required>
+      <mat-datepicker-toggle matSuffix [for]="qaOpEndDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #qaOpEndDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="input-group-1-per-line">
+      <mat-form-field class="form-group">
+        <input matInput placeholder="Quality Final Reviewer (Full Name)" formControlName="qaReviewedBy" required>
+      </mat-form-field>
+    </div>
+
+    <div class="input-group-1-per-line">
+      <mat-form-field class="form-group">
+        <input matInput placeholder="QA Comments" formControlName="qaComments" required>
+      </mat-form-field>
+    </div>
+  </mat-card>
+
+
+  <!-- Submit -->
+  <div class="form-group-submit-btn">
+    <button type="submit" class="btn btn-primary" [innerText]="submitBtnText"></button>
+    <!-- https://github.com/angular/angular/issues/11271#issuecomment-289806196 -->
+    <app-submitting *ngIf="submitting"></app-submitting>
+    <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
+
+    <!-- API submission error -->
+    <p *ngIf="error" class="mt-3 alert alert-danger">
+      <strong>Error:</strong> There was a problem submitting the record. Please try again.
+    </p>
+  </div>
+</form>

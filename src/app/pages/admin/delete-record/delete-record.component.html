@@ -1,0 +1,28 @@
+
+  <p class="lead">
+    Please enter your ID before deleting event
+  </p>
+  
+  <div class="form-group">
+    <label for="deleteRecord">Confirm ID:</label>
+    <input
+      type="text"
+      id="deleteRecord"
+      class="form-control"
+      name="deleteRecord"
+      [(ngModel)]="confirmDelete">
+  </div>
+  
+  <!-- Delete button -->
+  <p>
+    <button
+      class="btn btn-danger"
+      (click)="removeRecord()"
+      [disabled]="!confirmDelete || submitting">Delete Record</button>
+    <app-submitting *ngIf="submitting"></app-submitting>
+  </p>
+  
+  <!-- Error deleting event -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Oops!</strong> There was an error deleting this event. Please try again.
+  </p>
