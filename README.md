@@ -1,10 +1,8 @@
 # RecordStore
-
-# Records
-
 This project is an example of a form-based solution to facilitate the tracking and review of records or forms. It is scaffolded with the Angular CLI (as we can see below). In order to run, add a config.js file with applicapable database connections and credentials. Within the server directory is the code for a basic node server and the associate routes for CRUD operations. The forms are styled with Angular Material and the landing page is Bootstrap.
 
 
+## Angular CLI
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
 ## Development server
